@@ -28,11 +28,13 @@
 
 
 const express = require('express');
-const form = express('./routes/form');
-const app = express()
+const form = require('./routes/form');
+const app = express();
 app.use((req, res, next) => {
-    res.send('hello for server!')
-    res.next()
+    req.user = "Ali";
+    console.log(req.url);
+    next()
 })
+
 app.use('/form', form)
 app.listen(4000)
